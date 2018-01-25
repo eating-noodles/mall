@@ -17,6 +17,19 @@
 
     <mvc:annotation-driven />
 
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/jsp/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+
+    <!--资源映射-->
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+
+
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">
             <list>
@@ -24,6 +37,7 @@
             </list>
         </property>
     </bean>
+
 
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->
     <bean id="mappingJackson2HttpMessageConverter"
@@ -45,15 +59,5 @@
             </list>
         </property>
     </bean>
-
-    <bean
-            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/jsp/" />
-        <property name="suffix" value=".jsp" />
-    </bean>
-
-    <!--资源映射-->
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"></mvc:resources>
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js"></mvc:resources>
 
 </beans>
