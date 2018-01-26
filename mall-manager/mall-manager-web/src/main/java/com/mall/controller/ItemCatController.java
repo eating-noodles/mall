@@ -17,7 +17,7 @@ public class ItemCatController {
 
 
     @Resource
-    private ItemCatService itemCatService;
+    private ItemCatService  itemCatService;
 
     @RequestMapping("/list")
     @ResponseBody
