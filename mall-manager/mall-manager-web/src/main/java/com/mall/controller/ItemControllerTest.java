@@ -1,6 +1,7 @@
 package com.mall.controller;
 
 
+import com.mall.pojo.EUDataGridResult;
 import com.mall.pojo.TbItem;
 import com.mall.service.impl.ItemServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,13 @@ public class ItemControllerTest{
         TbItem item=itemServiceImpl.getItemById(itemId);
 
         return item;
+    }
+
+    @RequestMapping("/item/list")
+    @ResponseBody
+    public EUDataGridResult getItemList(Integer page,Integer rows){
+        EUDataGridResult result=itemServiceImpl.getItemList(page,rows);
+        return result;
     }
 
 

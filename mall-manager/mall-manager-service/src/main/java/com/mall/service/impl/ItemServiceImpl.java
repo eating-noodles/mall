@@ -1,6 +1,9 @@
 package com.mall.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.mall.mapper.TbItemMapper;
+import com.mall.pojo.EUDataGridResult;
 import com.mall.pojo.TbItem;
 import com.mall.pojo.TbItemExample;
 import com.mall.service.ItemService;
@@ -34,5 +37,23 @@ public class ItemServiceImpl implements ItemService {
         }
 
         return null;
+    }
+
+    @Override
+    public EUDataGridResult getItemList(int page, int rows) {
+
+        TbItemExample example=new TbItemExample();
+
+        PageHelper.startPage(page,rows);
+        List<TbItem> list=tbItemMapper.selectByExample(example);
+
+        PageInfo<TbItem> itemPageInfo=new PageInfo<>(list);
+        long total= itemPageInfo.getTotal();
+
+        EUDataGridResult euDataGridResult=new EUDataGridResult();
+        euDataGridResult.setRows(list);
+        euDataGridResult.setTotal(total);
+
+        return euDataGridResult;
     }
 }
